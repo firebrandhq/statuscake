@@ -57,7 +57,7 @@ class Client extends Call
     public function getTests()
     {
         $response = $this->callApi('Tests');
-        $this->buildTestsFromResponse($response);
+        return $this->buildTestsFromResponse($response);
     }
 
     /**
