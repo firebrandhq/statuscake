@@ -147,6 +147,11 @@ class Test extends Call
     public $Uptime = null; // LISTED ON getTests()
     
     /**
+     * @var int
+     */
+    public $Confirmation = 2; //Number of servers to use for confirmation
+    
+    /**
      * A period of data is two time stamps in which status has remained the same.
      *
      * @return array|mixed
