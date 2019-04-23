@@ -42,7 +42,7 @@ class Client extends Call
 
             foreach ($testData as $key => $testDataValue) {
 
-                $testItem->{lcfirst($key)} = $testDataValue;
+                $testItem->{$key} = $testDataValue;
             }
 
             $testList[] = $testItem;
@@ -113,7 +113,7 @@ class Client extends Call
             
             if(property_exists($response, 'InsertID'))
             {
-                $test->contactID = $response->InsertID;
+                $test->ContactID = $response->InsertID;
                 $test->registerCredentials($this->credentials);
             }
             
@@ -140,7 +140,7 @@ class Client extends Call
         }
 
         $response = $this->callApi(
-            'Tests/Details/?TestID=' . (int)$test->testID,
+            'Tests/Details/?TestID=' . (int)$test->TestID,
             'DELETE'
         );
 
@@ -226,7 +226,7 @@ class Client extends Call
             // Set attributes
             foreach($contactGroup as $key => $val)
             {
-                $group->{ucfirst($key)} = $val;
+                $group->{$key} = $val;
             }
             
             // Add to list
@@ -269,12 +269,12 @@ class Client extends Call
      */
     public function deleteContactGroup(ContactGroup $contactGroup)
     {
-        if ($contactGroup->isNew() || (int)$contactGroup->contactID == 0) {
+        if ($contactGroup->isNew() || (int)$contactGroup->ContactID == 0) {
             throw new Exception('Illegal Contact/ContactID.');
         }
         
         $response = $this->callApi(
-            'ContactGroups/Update/?ContactID=' . (int)$contactGroup->contactID,
+            'ContactGroups/Update/?ContactID=' . (int)$contactGroup->ContactID,
             'DELETE'
         );
         
