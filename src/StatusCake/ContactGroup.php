@@ -10,57 +10,57 @@ class ContactGroup
      *
      * @var int|null
      */
-    public $contactID = null;
+    public $ContactID = null;
     
     /**
      * [Required]
      * The internal Group Name.
      * @var string
      */
-    public $groupName = 0;
+    public $GroupName = 0;
     
     /**
      * @var int
      */
-    public $desktopAlert = 0; // Set to 1 To Enable Desktop Alerts
+    public $DesktopAlert = 0; // Set to 1 To Enable Desktop Alerts
     
     /**
      * Comma Seperated List of Emails To Alert. (no whitespace)
      *
      * @var array
      */
-    public $email = [];
+    public $Email = [];
     
     /**
      * A Boxcar API Key
      *
      * @var string
      */
-    public $boxCar = '';
+    public $BoxCar = '';
     
     /**
      * A Pushover Account Key
      *
      * @var string
      */
-    public $pushOver = '';
+    public $PushOver = '';
     
     /**
      * A URL To Send a POST alert.
      *
      * @var string
      */
-    public $pingURL = '';
+    public $PingURL = '';
     
     /**
      * Will be converted to a Comma Seperated List of International Format Cell Numbers
      * @var array
      */
-    public $mobile = [];
+    public $Mobile = [];
     
     public function isNew()
     {
-        return $this->contactID === null;
+        return $this->ContactID === null;
     }
     
     /**
@@ -72,9 +72,9 @@ class ContactGroup
      */
     public function addEmail($email)
     {
-        if (!in_array($email, $this->email))
+        if (!in_array($email, $this->Email))
         {
-            $this->email[] = $email;
+            $this->Email[] = $email;
         }
         
         return $this;
@@ -89,14 +89,14 @@ class ContactGroup
      */
     public function removeEmail($email)
     {
-        $key = array_search($email, $this->email);
+        $key = array_search($email, $this->Email);
         
         if ($key === false)
         {
             return $this;
         }
         
-        unset( $this->email[$key] );
+        unset( $this->Email[$key] );
         
         return $this;
     }
@@ -109,14 +109,14 @@ class ContactGroup
     public function toArray()
     {
         return [
-            'ContactId' => $this->contactID,
-            'GroupName' => $this->groupName,
-            'DesktopAlert' => $this->desktopAlert,
-            'BoxCar' => $this->boxCar,
-            'PushOver' => $this->pushOver,
-            'PingURL' => $this->pingURL,
-            'Email' => implode(',', $this->email),
-            'Mobile' => implode(',', $this->mobile),
+            'ContactId' => $this->ContactID,
+            'GroupName' => $this->GroupName,
+            'DesktopAlert' => $this->DesktopAlert,
+            'BoxCar' => $this->BoxCar,
+            'PushOver' => $this->PushOver,
+            'PingURL' => $this->PingURL,
+            'Email' => implode(',', $this->Email),
+            'Mobile' => implode(',', $this->Mobile),
         ];
     }
 }
