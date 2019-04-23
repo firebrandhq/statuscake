@@ -14,7 +14,7 @@ class Call
     /**
      * @var string
      */
-    protected $url = "https://www.statuscake.com/API";
+    protected $url = "https://app.statuscake.com/API";
 
     protected $credentials;
     
