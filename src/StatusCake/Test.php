@@ -22,129 +22,129 @@ class Test extends Call
     /**
      * @var int|null
      */
-    public $testID = null;  // null == new check | update, LISTED ON getTests()
+    public $TestID = null;  // null == new check | update, LISTED ON getTests()
     
     /**
      * @var int
      */
-    public $paused = 0; // LISTED ON getTests()
+    public $Paused = 0; // LISTED ON getTests()
     
     /**
      * @var string
      */
-    public $websiteName = "UNSET"; // REQUIRED ON UPDATE, LISTED ON getTests()
+    public $WebsiteName = "UNSET"; // REQUIRED ON UPDATE, LISTED ON getTests()
     
     /**
      * @var string
      */
-    public $websiteURL = "UNSET"; // REQUIRED ON UPDATE
+    public $WebsiteURL = "UNSET"; // REQUIRED ON UPDATE
     
     /**
      * @var int
      */
-    public $public = 0; // LISTED ON getTests()
+    public $Public = 0; // LISTED ON getTests()
     
     /**
      * @var string
      */
-    public $testType = self::TYPE_HTTP;  // HTTP,TCP,PING - REQUIRED ON UPDATE, LISTED ON getTests()
+    public $TestType = self::TYPE_HTTP;  // HTTP,TCP,PING - REQUIRED ON UPDATE, LISTED ON getTests()
     
     /**
      * @var string|null
      */
-    public $contactGroup = null; // e.g. "PagerDuty"; // LISTED ON getTests()
+    public $ContactGroup = null; // e.g. "PagerDuty"; // LISTED ON getTests()
     
     /**
      * @var int|null
      */
-    public $port = null;
+    public $Port = null;
     
     /**
      * @var int
      */
-    public $timeout = 30;
+    public $Timeout = 30;
     
     /**
      * @var null|string
      */
-    public $pingURL = null;
+    public $PingURL = null;
     
     /**
      * @var int
      */
-    public $checkRate = 300; // REQUIRED ON UPDATE
+    public $CheckRate = 300; // REQUIRED ON UPDATE
     
     /**
      * @var null|string
      */
-    public $basicUser = null;
+    public $BasicUser = null;
     
     /**
      * @var null|string
      */
-    public $basicPass = null;
+    public $BasicPass = null;
     
     /**
      * @var null|string
      */
-    public $logoImage = null;
+    public $LogoImage = null;
     
     /**
      * @var int
      */
-    public $branding = 0; // 1 to disable branding
+    public $Branding = 0; // 1 to disable branding
     
     /**
      * @var null|string
      */
-    public $websiteHost = null;
+    public $WebsiteHost = null;
     
     /**
      * @var int
      */
-    public $virus = 0;
+    public $Virus = 0;
     
     /**
      * @var string|null
      */
-    public $findString = null; //'SUCCESS';
+    public $FindString = null; //'SUCCESS';
     
     /**
      * @var int
      */
-    public $doNotFind = 0; // 1 to trigger alert if found
+    public $DoNotFind = 0; // 1 to trigger alert if found
     
     /**
      * @var int
      */
-    public $realBrowser = 0; // 1 to enable real browser testing
+    public $RealBrowser = 0; // 1 to enable real browser testing
     
     /**
      * @var int
      */
-    public $triggerRate = 5; // minutes to wait before sending an alert
+    public $TriggerRate = 5; // minutes to wait before sending an alert
     
     /**
      * @var null|string
      */
-    public $testTags = null;
+    public $TestTags = null;
     
     // theses are not in api settable? ... are returned by the list call =>
     
     /**
      * @var null|int
      */
-    public $contactID = null; // LISTED ON getTests()
+    public $ContactID = null; // LISTED ON getTests()
     
     /**
      * @var null|string
      */
-    public $status = self::STATUS_UNKNOWN; // LISTED ON getTests()
+    public $Status = self::STATUS_UNKNOWN; // LISTED ON getTests()
     
     /**
      * @var null|int
      */
-    public $uptime = null; // LISTED ON getTests()
+    public $Uptime = null; // LISTED ON getTests()
     
     /**
      * A period of data is two time stamps in which status has remained the same.
@@ -153,7 +153,7 @@ class Test extends Call
      */
     public function getPeriods()
     {
-        $response = $this->callApi('Tests/Periods?TestID=' . $this->testID, 'GET');
+        $response = $this->callApi('Tests/Periods?TestID=' . $this->TestID, 'GET');
         
         if (is_array($response))
         {
@@ -173,7 +173,7 @@ class Test extends Call
      */
     public function getPerformance($parameters)
     {
-        $parameters['TestID'] = $this->testID;
+        $parameters['TestID'] = $this->TestID;
     
         $response = $this->callApi('Tests/Periods', 'GET', $parameters);
     
@@ -193,7 +193,7 @@ class Test extends Call
      */
     public function getAlerts()
     {
-        $response = $this->callApi('Tests/Periods?TestID='.$this->testID, 'GET');
+        $response = $this->callApi('Tests/Periods?TestID='.$this->TestID, 'GET');
     
         if (is_array($response))
         {
@@ -211,7 +211,7 @@ class Test extends Call
      */
     public function getDetailedData()
     {
-        $response = $this->callApi('Tests/Details?TestID='.$this->testID, 'GET');
+        $response = $this->callApi('Tests/Details?TestID='.$this->TestID, 'GET');
 
         if (!is_object($response))
         {
@@ -219,7 +219,7 @@ class Test extends Call
         }
 
         foreach ($response as $key => $testDataValue) {
-            $this->{lcfirst($key)} = $testDataValue;
+            $this->{$key} = $testDataValue;
         }
 
         return $this;
