@@ -134,7 +134,7 @@ class Client extends Call
      */
     public function deleteTest(Test $test)
     {
-        if ((int)$test->testID == 0) {
+        if ((int)$test->TestID == 0) {
 
             throw new Exception('Illegal Test/TestID.');
         }
